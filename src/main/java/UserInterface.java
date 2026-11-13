@@ -1,4 +1,5 @@
 
+import java.math.BigDecimal;
 import java.util.List;
 public class UserInterface {
     private Dealership dealership;
@@ -107,6 +108,21 @@ public class UserInterface {
     }
 
     public void processAddVehicleRequest() {
+        int vin = Console.promptForInt("Enter VIN: ");
+        int year = Console.promptForInt("Enter year: ");
+        String make = Console.promptForString("Enter make: ");
+        String model = Console.promptForString("Enter model: ");
+        String type = Console.promptForString("Enter vehicle type:" );
+        String color = Console.promptForString("Enter color: ");
+        int odometer = Console.promptForInt("Enter odometer: ");
+        BigDecimal price = Console.promptForBigDecimal("Enter price: ");
+
+        Vehicle newVehicle = new Vehicle(vin, year, make, model, type, color, odometer,price );
+        dealership.addVehicle(newVehicle);
+
+        DealershipFileManager fileManager = new DealershipFileManager();
+        fileManager.saveDealership(dealership);
+        System.out.println("Vehicle added successfully!");
     }
 
     public void processRemoveVehicleRequest() {
