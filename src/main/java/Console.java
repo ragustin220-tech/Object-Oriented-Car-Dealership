@@ -1,4 +1,6 @@
 
+import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
     public class Console {
@@ -15,6 +17,18 @@ import java.util.Scanner;
             int result =  scanner.nextInt();
             scanner.nextLine();
             return result;
+        }
+        public static double promptForDouble(String prompt){
+            System.out.print(prompt);
+            double value = scanner.nextDouble();
+            scanner.nextLine();
+            return value;
+        }
+        public static BigDecimal promptForBigDecimal(String prompt){
+            System.out.print(prompt);
+            BigDecimal value = scanner.nextBigDecimal();
+            scanner.nextLine();
+            return value;
         }
 
     }

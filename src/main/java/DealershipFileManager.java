@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 
 public class DealershipFileManager {
 
-    private static final String FILE_PATH = "src/main/resources/inventory.csv";
+    private static final String FILE_PATH = "Inventory.csv";
 
     public Dealership getDealership() {
         Dealership dealership = null;
