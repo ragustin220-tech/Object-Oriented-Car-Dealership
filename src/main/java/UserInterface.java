@@ -90,21 +90,35 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest() {
+        double min = Console.promptForDouble("Enter minimum price: ");
+        double max = Console.promptForDouble("Enter maximum price: ");
+        List<Vehicle> results = dealership.getVehicleByPrice(min, max);
+        displayVehicles(results);
     }
 
     public void processGetByMakeModelRequest() {
+        String make = Console.promptForString("Enter make: ");
+        String model = Console.promptForString("Enter model: ");
+        List<Vehicle> results = dealership.getVehicleByMakeModel(make,model);
+        displayVehicles(results);
     }
 
     public void processGetByYearRequest() {
     }
 
     public void processGetByColorRequest() {
+        String color = Console.promptForString("Enter color: ");
+        List<Vehicle>results = dealership.getVehicleByColor(color);
+        displayVehicles(results);
     }
 
     public void processGetByMilageRequest() {
     }
 
     public void processGetByVehicleRequest() {
+        String type = Console.promptForString("Enter vehicle type: ");
+        List<Vehicle> results = dealership.getVehicleByType(type);
+        displayVehicles(results);
     }
 
     public void processAddVehicleRequest() {
