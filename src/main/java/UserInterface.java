@@ -1,5 +1,6 @@
 
 import java.math.BigDecimal;
+import java.sql.SQLOutput;
 import java.util.List;
 public class UserInterface {
     private Dealership dealership;
@@ -90,8 +91,8 @@ public class UserInterface {
     }
 
     public void processGetByPriceRequest() {
-        double min = Console.promptForDouble("Enter minimum price: ");
-        double max = Console.promptForDouble("Enter maximum price: ");
+        BigDecimal min = Console.promptForBigDecimal("Enter minimum price: ");
+        BigDecimal max = Console.promptForBigDecimal("Enter maximum price: ");
         List<Vehicle> results = dealership.getVehicleByPrice(min, max);
         displayVehicles(results);
     }
@@ -104,6 +105,10 @@ public class UserInterface {
     }
 
     public void processGetByYearRequest() {
+        int min = Console.promptForInt("Enter minimum year: ");
+        int max = Console.promptForInt("Enter maximum year: ");
+        List<Vehicle> results = dealership.getVehicleByYear(min, max);
+        displayVehicles(results);
     }
 
     public void processGetByColorRequest() {
@@ -113,6 +118,10 @@ public class UserInterface {
     }
 
     public void processGetByMilageRequest() {
+        int min = Console.promptForInt("Enter minimum mileage: ");
+        int max = Console.promptForInt("Enter maximum mileage: ");
+        List<Vehicle> results = dealership.getVehicleByMileage(min,max);
+        displayVehicles(results);
     }
 
     public void processGetByVehicleRequest() {
@@ -140,6 +149,23 @@ public class UserInterface {
     }
 
     public void processRemoveVehicleRequest() {
+        int vin = Console.promptForInt("Enter the VIN of the vehicle you want to remove: ");
+        Vehicle vehicleToRemove = null;
+
+        for (Vehicle v : dealership.getAllVehicles()){
+            if (v.getVin() == vin) {
+            vehicleToRemove = v;
+            break;
+            }
+        }
+        if (vehicleToRemove != null){
+            dealership.removeVehicle(vehicleToRemove);
+            DealershipFileManager fileManager= new DealershipFileManager();
+            fileManager.saveDealership(dealership);
+            System.out.println("Vehicle Removed.");
+        }else{
+            System.out.println("No vehicle found with VIN" + vin +".");
+        }
     }
 }
 

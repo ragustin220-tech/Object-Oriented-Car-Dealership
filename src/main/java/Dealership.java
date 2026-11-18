@@ -42,28 +42,64 @@ public class Dealership {
 
 
 
-    public List<Vehicle> getVehicleByPrice(double min, double max) {
-        return null;
+    public List<Vehicle> getVehicleByPrice(BigDecimal min, BigDecimal max) {
+        List<Vehicle> matches = new ArrayList<>();
+        for (Vehicle v : inventory){
+            if (v.getPrice().compareTo(min) >= 0 && v.getPrice().compareTo(max) <= 0){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
 
     public List<Vehicle> getVehicleByMakeModel(String make, String model) {
-        return null;
+        List<Vehicle> matches = new ArrayList<>();
+        for (Vehicle v : inventory){
+            if (v.getMake().equalsIgnoreCase(make) && v.getModel().equalsIgnoreCase(model)){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
 
     public List<Vehicle> getVehicleByYear(int min, int max) {
-        return null;
+     List<Vehicle> matches = new ArrayList<>();
+     for (Vehicle v : inventory){
+         if (v.getYear() >= min && v.getYear() <= max){
+             matches.add(v);
+         }
+     }
+     return matches;
     }
 
     public List<Vehicle> getVehicleByColor(String color) {
-        return null;
+       List<Vehicle>  matches = new ArrayList<>();
+       for (Vehicle v : inventory){
+           if (v.getColor().equalsIgnoreCase(color)){
+               matches.add(v);
+           }
+       }
+       return matches;
     }
 
     public List<Vehicle> getVehicleByMileage(int min, int max) {
-        return null;
+        List<Vehicle> matches = new ArrayList<>();
+        for (Vehicle v : inventory){
+            if (v.getOdometer() >= min && v.getOdometer() <= max){
+                matches.add(v);
+            }
+        }
+        return matches;
     }
 
     public List<Vehicle> getVehicleByType(String vehicleType) {
-        return null;
+       List<Vehicle> matches = new ArrayList<>();
+       for (Vehicle v : inventory){
+           if(v.getVehicleType().equalsIgnoreCase(vehicleType)){
+               matches.add(v);
+           }
+       }
+       return matches;
     }
 
     public List<Vehicle> getAllVehicles() {
